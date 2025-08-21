@@ -8,7 +8,18 @@
 3.	Модуль часов реального времени Arduino
 4.	СД-карта
 5.	Макетная плата
-6.	Провода 
+6.	Провода
+
+Изображение устройства:
 <img width="459" height="297" alt="image" src="https://github.com/user-attachments/assets/fe76fe5b-a4d9-4026-a1cb-e5e8f5671958" />
+<img width="411" height="312" alt="image" src="https://github.com/user-attachments/assets/0772a866-85eb-4359-be71-263ce1d6e1f9" />
+
+Интрефейс телеграм-бота 
+<img width="338" height="238" alt="image" src="https://github.com/user-attachments/assets/003a18f7-34c9-487e-bda2-6301ccbef37d" />
+<img width="468" height="328" alt="image" src="https://github.com/user-attachments/assets/bbb9398c-4b7b-4d0b-b54a-26cd0caf82bd" />
+
+Формат сохранённых данных в txt файле 
+
+
 
 

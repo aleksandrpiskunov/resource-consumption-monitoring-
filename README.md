@@ -13,7 +13,8 @@
 Изображение устройства:
 
 <img width="459" height="297" alt="image" src="https://github.com/user-attachments/assets/fe76fe5b-a4d9-4026-a1cb-e5e8f5671958" />
-<img width="411" height="312" alt="image" src="https://github.com/user-attachments/assets/0772a866-85eb-4359-be71-263ce1d6e1f9" />
+<img width="374" height="284" alt="image" src="https://github.com/user-attachments/assets/ec82e151-0ae9-4967-bdea-22d5b57c0b7f" />
+
 
 Интрефейс телеграм-бота 
 

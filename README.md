@@ -25,8 +25,9 @@
 
 <img width="468" height="336" alt="image" src="https://github.com/user-attachments/assets/2bcd7869-6bcd-4eb4-9441-a849eb6072d9" />
 
+
 Из полученных от телеграмм бота данных, пользуясь базовыми функциями Excel, можно построить графики потребления ресурсов.
-<img width="484" height="65" alt="image" src="https://github.com/user-attachments/assets/a7342d07-a854-4f7a-92a4-5e856c70f814" />
+
 
 
 

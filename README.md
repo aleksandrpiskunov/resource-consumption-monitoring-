@@ -9,4 +9,6 @@
 4.	СД-карта
 5.	Макетная плата
 6.	Провода 
+<img width="459" height="297" alt="image" src="https://github.com/user-attachments/assets/fe76fe5b-a4d9-4026-a1cb-e5e8f5671958" />
+
 

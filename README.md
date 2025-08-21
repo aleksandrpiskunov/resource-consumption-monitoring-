@@ -18,7 +18,7 @@
 
 Интрефейс телеграм-бота 
 
-<img width="338" height="238" alt="image" src="https://github.com/user-attachments/assets/003a18f7-34c9-487e-bda2-6301ccbef37d" />
+<img width="498" height="349" alt="image" src="https://github.com/user-attachments/assets/cd9aea75-e892-410c-a63e-caea44286f4c" />
 <img width="468" height="328" alt="image" src="https://github.com/user-attachments/assets/bbb9398c-4b7b-4d0b-b54a-26cd0caf82bd" />
 
 Формат сохранённых данных в txt файле 

@@ -20,6 +20,11 @@ void loop() {
         lastMeterPoll = millis();
     }
     FB_Time t = bot.getTime(3);
+    handleMeterData(t);
+    bot.tick();
+}
+
+void handleMeterData(const FB_Time& t) {
     String fractionStr = String(energyFraction, DEC);
     String fractionStrShort = fractionStr.substring(1);
     String totalStr = String(energyTotal, DEC);
@@ -38,16 +43,23 @@ void loop() {
         Serial.println(finalKwH.length());
         sd_write(finalKwH, t);
         sd_remove_first();
-        bot_send(finalKwH);
+        handleTelegramSend(finalKwH);
         lastDataSend = micros();
     }
-    bot.tick();
+}
+
+void handleTelegramSend(const String& finalKwH) {
+    bot_send(finalKwH);
 }
 
 void newMsg(FB_msg& msg) {
+    handleTelegramMsg(msg);
+}
+
+void handleTelegramMsg(FB_msg& msg) {
     FB_Time t(msg.unix, 3);
     if (msg.text == "/command1") {
-        File file = SD.open("/test.txt", "r");
+        File file = SD.open(SD_FILENAME, "r");
         bot_send_file(file);
         file.close();
     }

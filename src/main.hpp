@@ -7,4 +7,6 @@
 
 void setup();
 void loop();
-void newMsg(FB_msg& msg);
+void handleMeterData(const FB_Time& t);
+void handleTelegramSend(const String& finalKwH);
+void handleTelegramMsg(FB_msg& msg);

@@ -31,6 +31,11 @@ void loop() {
     last_surv = millis();
   }
   FB_Time t = bot.getTime(3);
+  handleMeterData(t);
+  bot.tick();
+}
+
+void handleMeterData(const FB_Time& t) {
   String drob_string = String(drob, DEC);
   String drob_string_kk = drob_string.substring(1);
   String kw_h_string = String(kw_h, DEC);
@@ -49,14 +54,21 @@ void loop() {
     Serial.println(finall_kw_h.length());
     sd_write(finall_kw_h, t);
     sd_remove_first();
-    bot_send(finall_kw_h);
+    handleTelegramSend(finall_kw_h);
     last_output = micros();
   }
-  bot.tick();
+}
+
+void handleTelegramSend(const String& finall_kw_h) {
+  bot_send(finall_kw_h);
 }
 
 // Обработка новых сообщений от Telegram
 void newMsg(FB_msg& msg) {
+  handleTelegramMsg(msg);
+}
+
+void handleTelegramMsg(FB_msg& msg) {
   FB_Time t(msg.unix, 3);
   if (msg.text == "/command1") {
     File file = SD.open("/test.txt", "r");

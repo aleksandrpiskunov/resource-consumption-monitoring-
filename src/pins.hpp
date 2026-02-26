@@ -1,6 +1,6 @@
 #pragma once
 
-// Пины для платы Wemos D1 R2
+// Определение пинов платы Wemos D1 R2 для подключения периферии
 constexpr uint8_t PIN_WEMOS_D0 = 16;
 constexpr uint8_t PIN_WEMOS_D1 = 5;
 constexpr uint8_t PIN_WEMOS_D2 = 4;

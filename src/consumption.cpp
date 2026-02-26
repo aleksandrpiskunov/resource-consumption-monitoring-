@@ -1,8 +1,10 @@
+
+#include <Arduino.h>
 #include "consumption.hpp"
 #include "pins.hpp"
 
 void updateConsumption() {
-    currentPulseState = digitalRead(PIN_D8);
+    currentPulseState = digitalRead(PIN_WEMOS_D8);
     if (currentPulseState == 0 && lastPulseState == 1) {
         pulseCount++;
         lastPulseState = currentPulseState;

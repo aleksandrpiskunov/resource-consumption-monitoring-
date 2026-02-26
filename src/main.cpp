@@ -5,41 +5,41 @@ void setup() {
     Serial.begin(9600);
     bot.attach(newMsg);
     pinMode(PIN_D8, INPUT);
-    kw_h = 22070;
-    drob = 0.15;
-    past_x = 1;
-    imp_count = 0;
+    energyTotal = ENERGY_TOTAL_START;
+    energyFraction = ENERGY_FRACTION_START;
+    lastPulseState = 1;
+    pulseCount = 0;
+    energyIncrement = ENERGY_INCREMENT_DEFAULT;
     wifi_init();
-    while(!Serial){}
     sd_init();
 }
 
 void loop() {
-    if (millis() - last_surv > 40) {
-        update_consumption();
-        last_surv = millis();
+    if (millis() - lastMeterPoll > METER_POLL_PERIOD_MS) {
+        updateConsumption();
+        lastMeterPoll = millis();
     }
     FB_Time t = bot.getTime(3);
-    String drob_string = String(drob, DEC);
-    String drob_string_kk = drob_string.substring(1);
-    String kw_h_string = String(kw_h, DEC);
+    String fractionStr = String(energyFraction, DEC);
+    String fractionStrShort = fractionStr.substring(1);
+    String totalStr = String(energyTotal, DEC);
     String el = "ЭЛ=";
     String kw_hs = "кВт*ч";
-    String prefin_kw_h = kw_h_string + drob_string_kk;
+    String prefin_kw_h = totalStr + fractionStrShort;
     prefin_kw_h.remove(8);
-    String finall_kw_h = el + prefin_kw_h + kw_hs;
-    if (micros() - last_output >= 30000000) {
+    String finalKwH = el + prefin_kw_h + kw_hs;
+    if (micros() - lastDataSend >= DATA_SEND_INTERVAL_US) {
         Serial.print(t.timeString());
         Serial.print(' ');
         Serial.println(t.dateString());
         Serial.print(" ");
-        Serial.println(finall_kw_h);
+        Serial.println(finalKwH);
         Serial.print("lenght=");
-        Serial.println(finall_kw_h.length());
-        sd_write(finall_kw_h, t);
+        Serial.println(finalKwH.length());
+        sd_write(finalKwH, t);
         sd_remove_first();
-        bot_send(finall_kw_h);
-        last_output = micros();
+        bot_send(finalKwH);
+        lastDataSend = micros();
     }
     bot.tick();
 }

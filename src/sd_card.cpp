@@ -8,52 +8,52 @@ void sd_init() {
         while (1);
     }
     Serial.println("Подключено ");
-    SD.remove("test.txt");
+    SD.remove(SD_FILENAME);
 }
 
-void sd_write(const String& finall_kw_h, const FB_Time& t) {
-    myFile = SD.open("test.txt", FILE_WRITE);
-    if (myFile) {
+void sd_write(const String& finalKwH, const FB_Time& t) {
+    meterFile = SD.open(SD_FILENAME, FILE_WRITE);
+    if (meterFile) {
         Serial.println("Загрузка в test.txt...");
-        myFile.print(t.hour);
-        myFile.print(':');
-        myFile.print(t.minute);
-        myFile.print(' ');
-        myFile.print(t.day);
-        myFile.print(':');
-        myFile.print(t.month);
-        myFile.print(':');
+        meterFile.print(t.hour);
+        meterFile.print(':');
+        meterFile.print(t.minute);
+        meterFile.print(' ');
+        meterFile.print(t.day);
+        meterFile.print(':');
+        meterFile.print(t.month);
+        meterFile.print(':');
         float year = t.year;
-        String year_string = String(year, DEC);
-        String year_1 = year_string.substring(2,4);
-        myFile.print(year_1);
-        myFile.print("  ");
-        myFile.println(finall_kw_h);
-        str_number+=40;
+        String yearStr = String(year, DEC);
+        String yearShort = yearStr.substring(2,4);
+        meterFile.print(yearShort);
+        meterFile.print("  ");
+        meterFile.println(finalKwH);
+        weekDataOffset += WEEK_DATA_OFFSET_STEP;
         Serial.println("Записано");
-        myFile.close();
+        meterFile.close();
     }
 }
 
 void sd_remove_first() {
-    if (first_out==0) {
-        SD.remove("test.txt");
-        first_out=1;
+    if (!isFirstWrite) {
+        SD.remove(SD_FILENAME);
+        isFirstWrite = true;
     }
 }
 
 String sd_read_week() {
-    myFile = SD.open("test.txt", FILE_READ);
+    meterFile = SD.open(SD_FILENAME, FILE_READ);
     String result = "";
-    if(myFile) {
-        while (myFile.available()) {
-            file_read = myFile.readString();
-            file_read_week = file_read.substring(str_number);
+    if(meterFile) {
+        while (meterFile.available()) {
+            tempDataStr = meterFile.readString();
+            weekDataStr = tempDataStr.substring(weekDataOffset);
             Serial.print("lenght=");
-            Serial.println(file_read_week.length());
+            Serial.println(weekDataStr.length());
         }
-        myFile.close();
-        result = file_read_week;
+        meterFile.close();
+        result = weekDataStr;
     }
     return result;
 }

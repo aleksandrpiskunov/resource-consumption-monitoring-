@@ -1,20 +1,20 @@
 #include "consumption.hpp"
 #include "pins.hpp"
 
-void update_consumption() {
-    x = digitalRead(PIN_D8);
-    if (x == 0 && past_x == 1) {
-        imp_count = imp_count+1;
-        past_x = x;
+void updateConsumption() {
+    currentPulseState = digitalRead(PIN_D8);
+    if (currentPulseState == 0 && lastPulseState == 1) {
+        pulseCount++;
+        lastPulseState = currentPulseState;
     } else {
-        past_x = x;
+        lastPulseState = currentPulseState;
     }
-    if (imp_count == 32) {
-        imp_count = 0;
-        drob = drob + slog;
-        if (drob == 1) {
-            kw_h += 1;
-            drob = 0.00;
+    if (pulseCount == PULSE_COUNT_TO_UPDATE) {
+        pulseCount = 0;
+        energyFraction += energyIncrement;
+        if (energyFraction >= ENERGY_FRACTION_MAX) {
+            energyTotal += 1;
+            energyFraction = 0.0;
         }
         Serial.println("HOP");
     }

@@ -3,10 +3,10 @@
 #include <FastBot.h>
 #include <ESP8266WIFI.h>
 
-#define CHAT_ID "*****"
-#define WIFI_SSID  "******"
-#define WIFI_PASS  "*****"
-#define BOT_TOKEN "*****"
+constexpr char TELEGRAM_CHAT_ID[] = "*****";
+constexpr char WIFI_SSID_VALUE[] = "******";
+constexpr char WIFI_PASS_VALUE[] = "*****";
+constexpr char TELEGRAM_BOT_TOKEN[] = "*****";
 
 extern FastBot bot;
 

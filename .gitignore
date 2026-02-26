@@ -1,0 +1,21 @@
+# Arduino
+*.ino
+*.hex
+*.elf
+*.bin
+
+# VS Code
+.vscode/
+
+# MacOS
+.DS_Store
+
+# Build
+build/
+
+# Logs
+*.log
+
+# Other
+*.pyc
+__pycache__/
